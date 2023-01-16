@@ -155,7 +155,7 @@ class ShiftCipher
 	            if(comp==0)
 	            { 
 	                
-	               val=j-3;
+	               val=j-key;
 	               val=val%26;
 	               
 	               char c=alp.charAt(val); 
