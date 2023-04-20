@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSA</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function Ncal() 
+        {
+            
+            var pv=parseInt(document.getElementById('pval').value);
+            var qv=parseInt(document.getElementById('qval').value);
+            if(isNaN(document.getElementById('qval').value)&&isNaN(document.getElementById('qval').value))
+            {
+                alert('Enter Number ..');
+                document.getElementById('pval').value="";
+                document.getElementById('qval').value="";
+                document.getElementById('em').value=""
+                document.getElementById('e').value="";
+            }
+            else
+            { 
+            var tot=pv*qv;
+            document.getElementById('pq').value=tot; 
+            empty();
+            }
+        }
+        function empty()
+        {
+
+            var pv=parseInt(document.getElementById('pval').value);
+            var qv=parseInt(document.getElementById('qval').value);
+            document.getElementById('em').value=(pv-1)*(qv-1);
+
+        }
+        function findE() {
+            var e = parseInt(document.getElementById('e').value);
+            var pv=parseInt(document.getElementById('pval').value);
+            var qv=parseInt(document.getElementById('qval').value);
+            var Pin=(pv-1)*(qv-1);
+           // alert(e+" "+Pin);
+            // to find gcd
+            var i=0;
+            var gcd=0;
+            for(i=0;i<=e&&i<=Pin;i++)
+            {
+                if(e%i==0&&Pin%i==0)
+                {
+                    gcd=i;
+
+                }
+
+            }
+            
+            //alert(gcd);
+            document.getElementById('e').value=gcd;
+            
+        }
+        
+        //function to encrypt the M
+        function Encrypt() {
+            
+                
+                    var e=parseInt(document.getElementById('e').value);
+                    var n=parseInt(document.getElementById('pq').value);
+                    var M = parseInt(document.getElementById('M').value);
+                    alert("Encrypted :"+Math.pow(M,e)%n);   
+                    //document.getElementById('EncryptL').value=Math.pow(M,e)%n;
+                   // document.getElementById('M').value="";
+            document.getElementById('pq').value="";
+            document.getElementById('e').value="";
+            document.getElementById('pval').value="";
+            document.getElementById('qval').value="";
+            document.getElementById('C').value="";
+            document.getElementById('DecryptL').value="";
+            document.getElementById('EncryptL').value="";
+            document.getElementById('em').value=""
+             
+           
+        }
+        function clear()
+        {
+            document.getElementById('pq').value="";
+            document.getElementById('e').value="";
+            document.getElementById('pval').value="";
+            document.getElementById('qval').value="";
+            document.getElementById('C').value="";
+            document.getElementById('DecryptL').value="";
+            document.getElementById('EncryptL').value="";
+            document.getElementById('em').value=""
+
+        }
+        function Decrypt()
+        {
+            
+            Ncal();
+            findE();
+            Encrypt();
+                    
+                    var e=parseInt(document.getElementById('e').value);
+                    var pv=parseInt(document.getElementById('pval').value);
+                    var qv=parseInt(document.getElementById('qval').value);
+                    var Pin=(pv-1)*(qv-1);
+                    //alert("De :"+Pin);
+                    var d=1;
+                    var C = parseInt(document.getElementById('C').value);
+                    while ((e*d++)%PiN != 1);
+                    d--;
+                    var mult=1;
+                    for (let i = 1; i <= d; i++) {
+                    mult = (mult * C)%n;
+                    console.log("i= "+i+" multi= "+mult);
+                        
+                    }
+                    alert("Decrypted :"+mult);
+                   
+                
+
+        }
+      
+
+    </script>
+
+</head>
+<body>
+
+    
+        <center>
+            <h1>IT1681 - Cryptography and Network Security</h1>
+        <h1>RSA Algorithm</h1>
+        <h3>_________________________________________________________________</h3>
+        <div class="vl"></div>
+        <div class="v2"></div>
+        p : <input type="text" id="pval" size="2" >
+        <br>
+        <br>
+        Q : <input type="text" id="qval" size="2">
+        <br>
+        <br>
+        
+        <button  onclick="Ncal()" id="pmq">P*Q</button>
+        =<input type="text" id="pq" size="2">
+        <br>
+        <br>
+        ∅ = <input type="text" id="em" size="2">
+        <br>
+        <br>
+        E = <input type="text" id="e" size="2">
+        = <button onclick="findE()" id="FindE">Find E</button>
+        <br>
+        <br>
+        M = <input type="text" id="M" size="2">
+        <br>
+        <br>
+        <button onclick="Encrypt()" id="enc">Encrypt</button>
+        <br>
+        <br>
+   <!-- Encryption : <input type="text" id="EncryptL" size="2">
+        <br>
+        <br> -->
+        c = <input type="text" id="C" size="2">
+        
+        <button onclick="Decrypt()" id="dec">Decrypt</button>
+        <br>
+        <br>
+        <!-- <br>
+   Decryption : <input type="text" id="DecryptL">   
+   <br>
+   <br> -->
+   <button onclick="clear()">Clear</button>
+        <h3>_________________________________________________________________</h3>
+    </center>
+
+        
+
+    
+
+    
+</body>
+</html>

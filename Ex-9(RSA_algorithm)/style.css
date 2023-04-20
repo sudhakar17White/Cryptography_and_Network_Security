@@ -1,0 +1,24 @@
+body {
+    background-color: rgb(253, 253, 253);
+  }
+  h3{
+
+    color: rgb(0, 0, 0);
+
+  }
+  .vl {
+    border-left: 2px solid rgba(41, 40, 40, 0.726);
+    height: 402px;
+    position: absolute;
+    left: 73%;
+    margin-left: -2px;
+    top: -1;
+  }
+  .v2 {
+    border-left: 2px solid rgba(36, 35, 35, 0.637);
+    height: 402px;
+    position: absolute;
+    left: 27%;
+    margin-left: -2px;
+    top: -1;
+  }
